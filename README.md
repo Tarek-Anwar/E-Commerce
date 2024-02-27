@@ -2,8 +2,8 @@
 - add Splas Screen
 
 ## ScreenShots:
-<p align="center">
   Brainstorming for App
-  <img src="img/brainstorming.png" height="450" width="220">
+<p align="center">
+  <img src="img/brainstorming.png">
 </p>
 
