@@ -1,46 +1,42 @@
 package com.egycode.e_commerce
 
-import android.animation.ObjectAnimator
+import android.animation.AnimatorSet
+import android.animation.ValueAnimator
 import android.os.Build
 import android.os.Bundle
-import android.view.View
-import android.view.animation.AnticipateInterpolator
+import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        installSplashScreen()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            initSplashScreen()
+        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
 
-    private fun initSplashScreen() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            installSplashScreen()
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
-            // Add a callback that's called when the splash screen is animating to the
-            // app content.
-            splashScreen.setOnExitAnimationListener { splashScreenView ->
-                // Create your custom animation.
-                val slideUp = ObjectAnimator.ofFloat(
-                    splashScreenView, View.TRANSLATION_Y, 0f, -splashScreenView.height.toFloat()
-                )
-                slideUp.interpolator = AnticipateInterpolator()
-                slideUp.duration = 1000L
-
-                // Call SplashScreenView.remove at the end of your custom animation.
-                slideUp.doOnEnd { splashScreenView.remove() }
-
-                // Run your animation.
-                slideUp.start()
+    private fun initSplashScreen(){
+        val splashScreen = installSplashScreen()
+        splashScreen.setOnExitAnimationListener { view ->
+            view.view.let { icon ->
+                val animator = ValueAnimator
+                    .ofInt(icon.bottom, 0)
+                    .setDuration(1000)
+                animator.addUpdateListener {
+                    val value = it.animatedValue as Int
+                    icon.layoutParams.width = value
+                    icon.layoutParams.height = value
+                    icon.requestLayout()
+                }
+                val animationSet = AnimatorSet()
+                animationSet.interpolator = AccelerateDecelerateInterpolator()
+                animationSet.play(animator)
+                animationSet.start()
             }
-
-        } else {
-            setTheme(R.style.Theme_ECommerce)
         }
     }
+
 }
