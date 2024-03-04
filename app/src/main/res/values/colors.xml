@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="white">#FFFFFF</color>
     <color name="primaryColor">#40BFFF</color>
+
+    <color name="neutralDark">#223263</color>
+    <color name="neutralGery">#9098B1</color>
+    <color name="neutralLight">#EBF0FF</color>
+
+    <!-- Primary -->
+    <color name="blue">#40BFFF</color>
+    <color name="red">#FB7181</color>
+    <color name="yellow">#FFC833</color>
+    <color name="green">#53D1B6</color>
+    <color name="purple">#5C61F4</color>
+
+
 </resources>
