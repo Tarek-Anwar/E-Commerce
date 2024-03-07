@@ -1,21 +1,15 @@
 package com.egycode.e_commerce.ui.login.viewmodel
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.egycode.e_commerce.data.repository.user.UserPreferencesRepository
+import kotlinx.coroutines.flow.MutableStateFlow
 
-class LoginViewModel : ViewModel()  {
+class LoginViewModel (
+    val userPrefs : UserPreferencesRepository
+) : ViewModel(){
+    val email = MutableStateFlow("")
+    val password = MutableStateFlow("")
 
 
-    val email = MutableLiveData<String>()
-    val password = MutableLiveData<String>()
 
-    fun login(){
-    }
-
-    fun loginWithGoogle(){
-    }
-
-    fun loginWithFacebook(){
-
-    }
 }
