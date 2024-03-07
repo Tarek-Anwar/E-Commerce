@@ -19,7 +19,7 @@
             android:id="@+id/frameLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".ui.login.fragment.LoginFragment">
+            tools:context=".ui.login.fragment.LoginFragmentUtils">
 
             <ImageView
                 android:id="@+id/imageView"
@@ -127,7 +127,6 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/button_background"
                     android:fontFamily="@font/poppins_bold"
-                    android:onClick="@{ () ->viewmodel.login()}"
                     android:text="@string/sign_in"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                     android:textColor="@color/neutralLight" />
@@ -180,7 +179,6 @@
                 android:paddingLeft="12dp"
                 android:paddingRight="12dp"
                 android:background="@drawable/button_login_with_background"
-                android:onClick="@{ () -> viewmodel.loginWithGoogle()}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView">
@@ -222,7 +220,6 @@
                 android:paddingLeft="12dp"
                 android:paddingRight="12dp"
                 android:background="@drawable/button_login_with_background"
-                android:onClick="@{ () -> viewmodel.loginWithFacebook()}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/button_login_with_google">

@@ -8,6 +8,7 @@ import com.github.pwittchen.reactivenetwork.library.rx2.ReactiveNetwork
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import io.reactivex.schedulers.Schedulers
 
+
 class MyApplication : Application() {
 
     init {
