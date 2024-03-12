@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
 import com.egycode.e_commerce.R
@@ -23,39 +24,52 @@ import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
-    private val userViewModel : UserViewModel by viewModels {
+    private var splashScreen: SplashScreen? = null
+    private val shouldAvoidSplashScreen = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
+    private var dismissSplash = false
+
+    private val userViewModel: UserViewModel by viewModels {
         UserViewModelFactory(UserPreferencesRepositoryImp(this))
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) initSplashScreen()
+        if (shouldAvoidSplashScreen) setTheme(R.style.Theme_ECommerce) else {
+            splashScreen = initSplashScreen()
+        }
+
         super.onCreate(savedInstanceState)
+
+        if (shouldAvoidSplashScreen.not()) splashScreen?.run {
+            setKeepOnScreenCondition { !dismissSplash }
+        }
         lifecycleScope.launch(Main) {
             val isUserLoggedIn = userViewModel.isUserLoggedIn().first()
-            if (isUserLoggedIn){
+            if (isUserLoggedIn) {
                 setContentView(R.layout.activity_main)
-            }else{
+            } else {
                 goToAuthActivity()
             }
         }
-
-
     }
 
     private fun goToAuthActivity() {
         val intent = Intent(this, AuthActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
-        val options = ActivityOptions.makeCustomAnimation(this , android.R.anim.fade_in , android.R.anim.fade_out)
-        startActivity(intent , options.toBundle())
+        val options = ActivityOptions.makeCustomAnimation(
+            this, android.R.anim.fade_in, android.R.anim.fade_out
+        )
+        startActivity(intent, options.toBundle())
     }
 
-    private fun initSplashScreen(){
+    private fun initSplashScreen() = installSplashScreen().apply {
+
         val splashScreen = installSplashScreen()
         splashScreen.setOnExitAnimationListener { view ->
             view.view.let { icon ->
                 val animator = ValueAnimator
                     .ofInt(icon.bottom, 0)
-                    .setDuration(1000)
+                    .setDuration(500)
                 animator.addUpdateListener {
                     val value = it.animatedValue as Int
                     icon.layoutParams.width = value
@@ -67,8 +81,10 @@ class MainActivity : AppCompatActivity() {
                 animationSet.play(animator)
                 animationSet.start()
             }
+
         }
     }
+
 
 }
 
