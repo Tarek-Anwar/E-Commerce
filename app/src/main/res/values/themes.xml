@@ -17,7 +17,7 @@
 
     </style>
 
-    <style name="Theme.ECommerce" parent="Base.Theme.ECommerce"/>
+    <style name="Theme.ECommerce" parent="Base.Theme.ECommerce" />
 
     <style name="Theme.MainActivity" parent="Base.Theme.ECommerce">
         <item name="android:windowBackground">@drawable/launch_window_background</item>
@@ -29,6 +29,41 @@
 
     </style>
 
+    <style name="TextTitleMedium">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/neutralDark</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
 
+    <style name="TextBodyMedium">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/neutralGery</item>
+        <item name="android:fontFamily">@font/poppins</item>
+    </style>
 
+    <style name="TextFiledNormal">
+        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/neutralGery</item>
+        <item name="android:drawablePadding">16dp</item>
+        <item name="android:paddingHorizontal" tools:targetApi="o">12dp</item>
+        <item name="android:background">@drawable/edittext_background</item>
+    </style>
+
+    <style name="ButtonLarge">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:background">@drawable/button_background</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="TextTitleSmallBlue">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/primaryColor</item>
+        <item name="android:fontFamily">@font/poppins</item>
+    </style>
 </resources>
