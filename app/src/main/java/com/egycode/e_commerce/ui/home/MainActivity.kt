@@ -13,10 +13,11 @@ import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.lifecycleScope
 import com.egycode.e_commerce.R
+import com.egycode.e_commerce.data.datasource.datastore.UserPreferencesDataSource
 import com.egycode.e_commerce.data.repository.user.UserPreferencesRepositoryImp
 import com.egycode.e_commerce.ui.common.viewmodel.UserViewModel
 import com.egycode.e_commerce.ui.common.viewmodel.UserViewModelFactory
-import com.egycode.e_commerce.ui.login.AuthActivity
+import com.egycode.e_commerce.ui.auth.AuthActivity
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -29,7 +30,9 @@ class MainActivity : AppCompatActivity() {
     private var dismissSplash = false
 
     private val userViewModel: UserViewModel by viewModels {
-        UserViewModelFactory(UserPreferencesRepositoryImp(this))
+        UserViewModelFactory(UserPreferencesRepositoryImp(
+            userPreferencesDataSource = UserPreferencesDataSource(this)
+        ))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
