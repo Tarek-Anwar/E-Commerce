@@ -11,7 +11,7 @@ import com.egycode.e_commerce.ui.auth.viewmodel.LoginViewModel
 import com.egycode.e_commerce.ui.auth.viewmodel.LoginViewModelFactory
 
 
-class LoginFragmentUtils : BindingFragmentUtils<FragmentLoginBinding>() {
+class LoginFragment : BindingFragmentUtils<FragmentLoginBinding>() {
 
     override fun getViewBinding(): FragmentLoginBinding = FragmentLoginBinding.inflate(layoutInflater)
 
