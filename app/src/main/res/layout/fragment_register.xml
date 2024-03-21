@@ -85,7 +85,7 @@
 
             <Button
                 android:id="@+id/button_sign_in"
-                style="@style/ButtonLarge"
+                style="@style/ButtonBlueStyle"
                 android:layout_margin="16dp"
                 android:background="@drawable/button_background"
                 android:fontFamily="@font/poppins_bold"

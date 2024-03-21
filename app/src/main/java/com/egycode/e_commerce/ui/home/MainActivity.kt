@@ -26,7 +26,7 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
 
     private var splashScreen: SplashScreen? = null
-    private val shouldAvoidSplashScreen = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
+    private val shouldAvoidSplashScreen = Build.VERSION.SDK_INT <= Build.VERSION_CODES.S
     private var dismissSplash = false
 
     private val userViewModel: UserViewModel by viewModels {
