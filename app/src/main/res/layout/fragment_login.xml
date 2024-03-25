@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -46,7 +47,7 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/sign_in_to_continue" />
 
-            <com.google.android.material.textfield.TextInputEditText
+            <EditText
                 android:id="@+id/ed_text_email_login"
                 style="@style/TextFiledNormal"
                 android:layout_width="match_parent"
@@ -56,15 +57,17 @@
                 android:inputType="textEmailAddress"
                 android:text="@={viewmodel.email}" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ed_text_password_login"
-                style="@style/TextFiledNormal"
-                android:layout_width="match_parent"
-                android:layout_marginHorizontal="16dp"
-                android:drawableStart="@drawable/icon_lock"
-                android:hint="@string/password"
-                android:inputType="textPassword"
-                android:text="@={viewmodel.password}" />
+
+                <EditText
+                    android:id="@+id/ed_text_password_login"
+                    style="@style/TextFiledNormal"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="16dp"
+                    android:drawableStart="@drawable/icon_lock"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:text="@={viewmodel.password}" />
+
 
             <Button
                 android:id="@+id/button_sign_in"
@@ -72,6 +75,7 @@
                 android:layout_margin="16dp"
                 android:background="@drawable/button_background"
                 android:fontFamily="@font/poppins_bold"
+                android:onClickListener="@{() -> viewmodel.login()}"
                 android:text="@string/sign_in" />
 
             <RelativeLayout
